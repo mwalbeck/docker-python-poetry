@@ -1,0 +1,361 @@
+---
+kind: pipeline
+type: docker
+name: 3-7-alpine_test
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      dockerfile: 3.7/Dockerfile.alpine
+      repo: mwalbeck/python-poetry
+      dry_run: true
+trigger:
+  event:
+    - pull_request
+
+---
+kind: pipeline
+type: docker
+name: 3-7-alpine_build
+
+steps:
+  - name: determine tags
+    image: mwalbeck/determine-docker-tags
+    environment:
+      VERSION_TYPE: "docker_env"
+      APP_NAME: "POETRY"
+      DOCKERFILE_PATH: "3.7/Dockerfile.alpine"
+      APP_ENV: "3.7-alpine"
+
+  - name: build and publish
+    image: plugins/docker
+    settings:
+      dockerfile: 3.7/Dockerfile.alpine
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+      repo: mwalbeck/python-poetry
+  
+  - name: notify
+    image: plugins/matrix
+    settings:
+      homeserver: https://matrix.mwalbeck.org
+      roomid:
+        from_secret: matrix_roomid
+      username:
+        from_secret: matrix_username
+      password:
+        from_secret: matrix_password
+    when:
+      status:
+        - success
+        - failure
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: 3-7-debian_test
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      dockerfile: 3.7/Dockerfile.debian
+      repo: mwalbeck/python-poetry
+      dry_run: true
+trigger:
+  event:
+    - pull_request
+
+---
+kind: pipeline
+type: docker
+name: 3-7-debian_build
+
+steps:
+  - name: determine tags
+    image: mwalbeck/determine-docker-tags
+    environment:
+      VERSION_TYPE: "docker_env"
+      APP_NAME: "POETRY"
+      DOCKERFILE_PATH: "3.7/Dockerfile.debian"
+      APP_ENV: "3.7-debian"
+
+  - name: build and publish
+    image: plugins/docker
+    settings:
+      dockerfile: 3.7/Dockerfile.debian
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+      repo: mwalbeck/python-poetry
+  
+  - name: notify
+    image: plugins/matrix
+    settings:
+      homeserver: https://matrix.mwalbeck.org
+      roomid:
+        from_secret: matrix_roomid
+      username:
+        from_secret: matrix_username
+      password:
+        from_secret: matrix_password
+    when:
+      status:
+        - success
+        - failure
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: 3-8-alpine_test
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      dockerfile: 3.8/Dockerfile.alpine
+      repo: mwalbeck/python-poetry
+      dry_run: true
+trigger:
+  event:
+    - pull_request
+
+---
+kind: pipeline
+type: docker
+name: 3-8-alpine_build
+
+steps:
+  - name: determine tags
+    image: mwalbeck/determine-docker-tags
+    environment:
+      VERSION_TYPE: "docker_env"
+      APP_NAME: "POETRY"
+      DOCKERFILE_PATH: "3.8/Dockerfile.alpine"
+      APP_ENV: "3.8-alpine"
+
+  - name: build and publish
+    image: plugins/docker
+    settings:
+      dockerfile: 3.8/Dockerfile.alpine
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+      repo: mwalbeck/python-poetry
+  
+  - name: notify
+    image: plugins/matrix
+    settings:
+      homeserver: https://matrix.mwalbeck.org
+      roomid:
+        from_secret: matrix_roomid
+      username:
+        from_secret: matrix_username
+      password:
+        from_secret: matrix_password
+    when:
+      status:
+        - success
+        - failure
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: 3-8-debian_test
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      dockerfile: 3.8/Dockerfile.debian
+      repo: mwalbeck/python-poetry
+      dry_run: true
+trigger:
+  event:
+    - pull_request
+
+---
+kind: pipeline
+type: docker
+name: 3-8-debian_build
+
+steps:
+  - name: determine tags
+    image: mwalbeck/determine-docker-tags
+    environment:
+      VERSION_TYPE: "docker_env"
+      APP_NAME: "POETRY"
+      DOCKERFILE_PATH: "3.8/Dockerfile.debian"
+      APP_ENV: "3.8-debian"
+
+  - name: build and publish
+    image: plugins/docker
+    settings:
+      dockerfile: 3.8/Dockerfile.debian
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+      repo: mwalbeck/python-poetry
+  
+  - name: notify
+    image: plugins/matrix
+    settings:
+      homeserver: https://matrix.mwalbeck.org
+      roomid:
+        from_secret: matrix_roomid
+      username:
+        from_secret: matrix_username
+      password:
+        from_secret: matrix_password
+    when:
+      status:
+        - success
+        - failure
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: 3-9-alpine_test
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      dockerfile: 3.9/Dockerfile.alpine
+      repo: mwalbeck/python-poetry
+      dry_run: true
+trigger:
+  event:
+    - pull_request
+
+---
+kind: pipeline
+type: docker
+name: 3-9-alpine_build
+
+steps:
+  - name: determine tags
+    image: mwalbeck/determine-docker-tags
+    environment:
+      VERSION_TYPE: "docker_env"
+      APP_NAME: "POETRY"
+      DOCKERFILE_PATH: "3.9/Dockerfile.alpine"
+      APP_ENV: "3.9-alpine"
+      CUSTOM_TAGS: "latest,alpine"
+
+  - name: build and publish
+    image: plugins/docker
+    settings:
+      dockerfile: 3.9/Dockerfile.alpine
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+      repo: mwalbeck/python-poetry
+  
+  - name: notify
+    image: plugins/matrix
+    settings:
+      homeserver: https://matrix.mwalbeck.org
+      roomid:
+        from_secret: matrix_roomid
+      username:
+        from_secret: matrix_username
+      password:
+        from_secret: matrix_password
+    when:
+      status:
+        - success
+        - failure
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: 3-9-debian_test
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      dockerfile: 3.9/Dockerfile.debian
+      repo: mwalbeck/python-poetry
+      dry_run: true
+trigger:
+  event:
+    - pull_request
+
+---
+kind: pipeline
+type: docker
+name: 3-9-debian_build
+
+steps:
+  - name: determine tags
+    image: mwalbeck/determine-docker-tags
+    environment:
+      VERSION_TYPE: "docker_env"
+      APP_NAME: "POETRY"
+      DOCKERFILE_PATH: "3.9/Dockerfile.debian"
+      APP_ENV: "3.9-debian"
+      CUSTOM_TAGS: "debian"
+
+  - name: build and publish
+    image: plugins/docker
+    settings:
+      dockerfile: 3.9/Dockerfile.debian
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+      repo: mwalbeck/python-poetry
+  
+  - name: notify
+    image: plugins/matrix
+    settings:
+      homeserver: https://matrix.mwalbeck.org
+      roomid:
+        from_secret: matrix_roomid
+      username:
+        from_secret: matrix_username
+      password:
+        from_secret: matrix_password
+    when:
+      status:
+        - success
+        - failure
+trigger:
+  branch:
+    - master
+  event:
+    - push
