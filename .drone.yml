@@ -1,13 +1,13 @@
 ---
 kind: pipeline
 type: docker
-name: 3-7-alpine_test
+name: 3-7_test
 
 steps:
   - name: docker
     image: plugins/docker
     settings:
-      dockerfile: 3.7/Dockerfile.alpine
+      dockerfile: 3.7/Dockerfile
       repo: mwalbeck/python-poetry
       dry_run: true
 trigger:
@@ -17,7 +17,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: 3-7-alpine_build
+name: 3-7_build
 
 steps:
   - name: determine tags
@@ -25,13 +25,13 @@ steps:
     environment:
       VERSION_TYPE: "docker_env"
       APP_NAME: "POETRY"
-      DOCKERFILE_PATH: "3.7/Dockerfile.alpine"
-      APP_ENV: "3.7-alpine"
+      DOCKERFILE_PATH: "3.7/Dockerfile"
+      APP_ENV: "3.7"
 
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: 3.7/Dockerfile.alpine
+      dockerfile: 3.7/Dockerfile
       username:
         from_secret: dockerhub_username
       password:
@@ -61,13 +61,13 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: 3-7-debian_test
+name: 3-8_test
 
 steps:
   - name: docker
     image: plugins/docker
     settings:
-      dockerfile: 3.7/Dockerfile.debian
+      dockerfile: 3.8/Dockerfile
       repo: mwalbeck/python-poetry
       dry_run: true
 trigger:
@@ -77,7 +77,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: 3-7-debian_build
+name: 3-8_build
 
 steps:
   - name: determine tags
@@ -85,13 +85,13 @@ steps:
     environment:
       VERSION_TYPE: "docker_env"
       APP_NAME: "POETRY"
-      DOCKERFILE_PATH: "3.7/Dockerfile.debian"
-      APP_ENV: "3.7-debian"
+      DOCKERFILE_PATH: "3.8/Dockerfile"
+      APP_ENV: "3.8"
 
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: 3.7/Dockerfile.debian
+      dockerfile: 3.8/Dockerfile
       username:
         from_secret: dockerhub_username
       password:
@@ -121,13 +121,13 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: 3-8-alpine_test
+name: 3-9_test
 
 steps:
   - name: docker
     image: plugins/docker
     settings:
-      dockerfile: 3.8/Dockerfile.alpine
+      dockerfile: 3.9/Dockerfile
       repo: mwalbeck/python-poetry
       dry_run: true
 trigger:
@@ -137,7 +137,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: 3-8-alpine_build
+name: 3-9_build
 
 steps:
   - name: determine tags
@@ -145,195 +145,14 @@ steps:
     environment:
       VERSION_TYPE: "docker_env"
       APP_NAME: "POETRY"
-      DOCKERFILE_PATH: "3.8/Dockerfile.alpine"
-      APP_ENV: "3.8-alpine"
-
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: 3.8/Dockerfile.alpine
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: mwalbeck/python-poetry
-  
-  - name: notify
-    image: plugins/matrix
-    settings:
-      homeserver: https://matrix.mwalbeck.org
-      roomid:
-        from_secret: matrix_roomid
-      username:
-        from_secret: matrix_username
-      password:
-        from_secret: matrix_password
-    when:
-      status:
-        - success
-        - failure
-trigger:
-  branch:
-    - master
-  event:
-    - push
-
----
-kind: pipeline
-type: docker
-name: 3-8-debian_test
-
-steps:
-  - name: docker
-    image: plugins/docker
-    settings:
-      dockerfile: 3.8/Dockerfile.debian
-      repo: mwalbeck/python-poetry
-      dry_run: true
-trigger:
-  event:
-    - pull_request
-
----
-kind: pipeline
-type: docker
-name: 3-8-debian_build
-
-steps:
-  - name: determine tags
-    image: mwalbeck/determine-docker-tags
-    environment:
-      VERSION_TYPE: "docker_env"
-      APP_NAME: "POETRY"
-      DOCKERFILE_PATH: "3.8/Dockerfile.debian"
-      APP_ENV: "3.8-debian"
-
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: 3.8/Dockerfile.debian
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: mwalbeck/python-poetry
-  
-  - name: notify
-    image: plugins/matrix
-    settings:
-      homeserver: https://matrix.mwalbeck.org
-      roomid:
-        from_secret: matrix_roomid
-      username:
-        from_secret: matrix_username
-      password:
-        from_secret: matrix_password
-    when:
-      status:
-        - success
-        - failure
-trigger:
-  branch:
-    - master
-  event:
-    - push
-
----
-kind: pipeline
-type: docker
-name: 3-9-alpine_test
-
-steps:
-  - name: docker
-    image: plugins/docker
-    settings:
-      dockerfile: 3.9/Dockerfile.alpine
-      repo: mwalbeck/python-poetry
-      dry_run: true
-trigger:
-  event:
-    - pull_request
-
----
-kind: pipeline
-type: docker
-name: 3-9-alpine_build
-
-steps:
-  - name: determine tags
-    image: mwalbeck/determine-docker-tags
-    environment:
-      VERSION_TYPE: "docker_env"
-      APP_NAME: "POETRY"
-      DOCKERFILE_PATH: "3.9/Dockerfile.alpine"
-      APP_ENV: "3.9-alpine"
+      DOCKERFILE_PATH: "3.9/Dockerfile"
+      APP_ENV: "3.9"
       CUSTOM_TAGS: "latest"
 
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: 3.9/Dockerfile.alpine
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: mwalbeck/python-poetry
-  
-  - name: notify
-    image: plugins/matrix
-    settings:
-      homeserver: https://matrix.mwalbeck.org
-      roomid:
-        from_secret: matrix_roomid
-      username:
-        from_secret: matrix_username
-      password:
-        from_secret: matrix_password
-    when:
-      status:
-        - success
-        - failure
-trigger:
-  branch:
-    - master
-  event:
-    - push
-
----
-kind: pipeline
-type: docker
-name: 3-9-debian_test
-
-steps:
-  - name: docker
-    image: plugins/docker
-    settings:
-      dockerfile: 3.9/Dockerfile.debian
-      repo: mwalbeck/python-poetry
-      dry_run: true
-trigger:
-  event:
-    - pull_request
-
----
-kind: pipeline
-type: docker
-name: 3-9-debian_build
-
-steps:
-  - name: determine tags
-    image: mwalbeck/determine-docker-tags
-    environment:
-      VERSION_TYPE: "docker_env"
-      APP_NAME: "POETRY"
-      DOCKERFILE_PATH: "3.9/Dockerfile.debian"
-      APP_ENV: "3.9-debian"
-      CUSTOM_TAGS: ""
-
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: 3.9/Dockerfile.debian
+      dockerfile: 3.9/Dockerfile
       username:
         from_secret: dockerhub_username
       password:
