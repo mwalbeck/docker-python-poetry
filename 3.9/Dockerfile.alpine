@@ -5,6 +5,18 @@ ENV POETRY_VERSION v1.1.4
 
 RUN set -ex; \
     \
-    pip install poetry==$POETRY_VERSION;
+    apk add --no-cache \
+        gcc \
+        libressl-dev \
+        musl-dev \
+        libffi-dev; \
+    \
+    pip install poetry==$POETRY_VERSION; \
+    \
+    apk del \
+        gcc \
+        libressl-dev \
+        musl-dev \
+        libffi-dev;
 
 CMD [ "poetry" ]

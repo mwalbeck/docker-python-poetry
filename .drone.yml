@@ -267,7 +267,7 @@ steps:
       APP_NAME: "POETRY"
       DOCKERFILE_PATH: "3.9/Dockerfile.alpine"
       APP_ENV: "3.9-alpine"
-      CUSTOM_TAGS: "latest,alpine"
+      CUSTOM_TAGS: "latest"
 
   - name: build and publish
     image: plugins/docker
@@ -328,7 +328,7 @@ steps:
       APP_NAME: "POETRY"
       DOCKERFILE_PATH: "3.9/Dockerfile.debian"
       APP_ENV: "3.9-debian"
-      CUSTOM_TAGS: "debian"
+      CUSTOM_TAGS: ""
 
   - name: build and publish
     image: plugins/docker
