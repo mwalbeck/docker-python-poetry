@@ -1,4 +1,22 @@
 ---
+###############################################################################
+kind: pipeline
+type: docker
+name: lint
+
+steps:
+  - name: lint dockerfile
+    image: hadolint/hadolint
+    commands:
+      - hadolint */Dockerfile
+
+trigger:
+  event:
+    - pull_request
+    - push
+
+---
+###############################################################################
 kind: pipeline
 type: docker
 name: 3-7_test
@@ -10,11 +28,16 @@ steps:
       dockerfile: 3.7/Dockerfile
       repo: mwalbeck/python-poetry
       dry_run: true
+
 trigger:
   event:
     - pull_request
 
+depends_on:
+  - lint
+
 ---
+###############################################################################
 kind: pipeline
 type: docker
 name: 3-7_build
@@ -52,13 +75,18 @@ steps:
       status:
         - success
         - failure
+
 trigger:
   branch:
     - master
   event:
     - push
 
+depends_on:
+  - lint
+
 ---
+###############################################################################
 kind: pipeline
 type: docker
 name: 3-8_test
@@ -70,11 +98,16 @@ steps:
       dockerfile: 3.8/Dockerfile
       repo: mwalbeck/python-poetry
       dry_run: true
+
 trigger:
   event:
     - pull_request
 
+depends_on:
+  - lint
+
 ---
+###############################################################################
 kind: pipeline
 type: docker
 name: 3-8_build
@@ -112,13 +145,18 @@ steps:
       status:
         - success
         - failure
+
 trigger:
   branch:
     - master
   event:
     - push
 
+depends_on:
+  - lint
+
 ---
+###############################################################################
 kind: pipeline
 type: docker
 name: 3-9_test
@@ -130,11 +168,16 @@ steps:
       dockerfile: 3.9/Dockerfile
       repo: mwalbeck/python-poetry
       dry_run: true
+
 trigger:
   event:
     - pull_request
 
+depends_on:
+  - lint
+
 ---
+###############################################################################
 kind: pipeline
 type: docker
 name: 3-9_build
@@ -173,8 +216,12 @@ steps:
       status:
         - success
         - failure
+
 trigger:
   branch:
     - master
   event:
     - push
+
+depends_on:
+  - lint
