@@ -1,6 +1,7 @@
 # docker-python-poetry
 
 [![Build Status](https://build.walbeck.it/api/badges/walbeck-it/docker-python-poetry/status.svg)](https://build.walbeck.it/walbeck-it/docker-python-poetry)
+![Docker Pulls](https://img.shields.io/docker/pulls/mwalbeck/python-poetry)
 
 A Debian based python docker container with poetry pre-installed. This image is built from the official python slim-buster image. Check out the image on [Docker Hub](https://hub.docker.com/r/mwalbeck/python-poetry)
 
