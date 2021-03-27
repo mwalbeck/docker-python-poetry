@@ -17,8 +17,9 @@ def lint():
     "steps": [
       {
         "name": "Lint Dockerfiles",
-        "image": "hadolint/hadolint",
+        "image": "hadolint/hadolint:latest-debian",
         "commands": [
+          "hadolint --version",
           "hadolint */Dockerfile"
         ],
       }
