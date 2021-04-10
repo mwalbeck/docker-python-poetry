@@ -9,6 +9,7 @@ platform:
 
 steps:
 - name: Lint Dockerfiles
+  pull: if-not-exists
   image: hadolint/hadolint:latest-debian
   commands:
   - hadolint --version
@@ -33,6 +34,7 @@ platform:
 
 steps:
 - name: build test
+  pull: if-not-exists
   image: plugins/docker
   settings:
     dockerfile: 3.7/Dockerfile
@@ -57,6 +59,7 @@ platform:
 
 steps:
 - name: build test
+  pull: if-not-exists
   image: plugins/docker
   settings:
     dockerfile: 3.8/Dockerfile
@@ -81,6 +84,7 @@ platform:
 
 steps:
 - name: build test
+  pull: if-not-exists
   image: plugins/docker
   settings:
     dockerfile: 3.9/Dockerfile
@@ -105,6 +109,7 @@ platform:
 
 steps:
 - name: determine tags
+  pull: if-not-exists
   image: mwalbeck/determine-docker-tags
   environment:
     APP_ENV: 3.7
@@ -113,6 +118,7 @@ steps:
     VERSION_TYPE: docker_env
 
 - name: build and publish
+  pull: if-not-exists
   image: plugins/docker
   settings:
     dockerfile: 3.7/Dockerfile
@@ -123,6 +129,7 @@ steps:
       from_secret: dockerhub_username
 
 - name: notify
+  pull: if-not-exists
   image: plugins/matrix
   settings:
     homeserver: https://matrix.mwalbeck.org
@@ -157,6 +164,7 @@ platform:
 
 steps:
 - name: determine tags
+  pull: if-not-exists
   image: mwalbeck/determine-docker-tags
   environment:
     APP_ENV: 3.8
@@ -165,6 +173,7 @@ steps:
     VERSION_TYPE: docker_env
 
 - name: build and publish
+  pull: if-not-exists
   image: plugins/docker
   settings:
     dockerfile: 3.8/Dockerfile
@@ -175,6 +184,7 @@ steps:
       from_secret: dockerhub_username
 
 - name: notify
+  pull: if-not-exists
   image: plugins/matrix
   settings:
     homeserver: https://matrix.mwalbeck.org
@@ -209,6 +219,7 @@ platform:
 
 steps:
 - name: determine tags
+  pull: if-not-exists
   image: mwalbeck/determine-docker-tags
   environment:
     APP_ENV: 3.9
@@ -218,6 +229,7 @@ steps:
     VERSION_TYPE: docker_env
 
 - name: build and publish
+  pull: if-not-exists
   image: plugins/docker
   settings:
     dockerfile: 3.9/Dockerfile
@@ -228,6 +240,7 @@ steps:
       from_secret: dockerhub_username
 
 - name: notify
+  pull: if-not-exists
   image: plugins/matrix
   settings:
     homeserver: https://matrix.mwalbeck.org
