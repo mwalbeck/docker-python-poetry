@@ -39,7 +39,11 @@ steps:
   settings:
     dockerfile: 3.7/Dockerfile
     dry_run: true
+    password:
+      from_secret: dockerhub_password_ro
     repo: mwalbeck/python-poetry
+    username:
+      from_secret: dockerhub_username
 
 trigger:
   event:
@@ -64,7 +68,11 @@ steps:
   settings:
     dockerfile: 3.8/Dockerfile
     dry_run: true
+    password:
+      from_secret: dockerhub_password_ro
     repo: mwalbeck/python-poetry
+    username:
+      from_secret: dockerhub_username
 
 trigger:
   event:
@@ -89,7 +97,11 @@ steps:
   settings:
     dockerfile: 3.9/Dockerfile
     dry_run: true
+    password:
+      from_secret: dockerhub_password_ro
     repo: mwalbeck/python-poetry
+    username:
+      from_secret: dockerhub_username
 
 trigger:
   event:
@@ -266,6 +278,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 33e949c8fe74913461182bc9763b833877ce859b61da7c1649fa15c54a0d6ad1
+hmac: 2c1b184a28ab4239f8594fc8d6c06ed731c6ca890604f74b3b1d7e821e185ae7
 
 ...
