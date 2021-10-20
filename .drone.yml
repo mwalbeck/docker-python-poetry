@@ -1,20 +1,13 @@
 ---
 kind: pipeline
-type: docker
 name: lint
-
-platform:
-  os: linux
-  arch: amd64
-
 steps:
-- name: Lint Dockerfiles
-  pull: if-not-exists
-  image: hadolint/hadolint:latest-debian
-  commands:
+- commands:
   - hadolint --version
   - hadolint */Dockerfile
-
+  image: hadolint/hadolint:latest-debian
+  name: Lint Dockerfiles
+  pull: if-not-exists
 trigger:
   event:
   - pull_request
@@ -22,116 +15,109 @@ trigger:
   ref:
     exclude:
     - refs/heads/renovate/*
-
----
-kind: pipeline
 type: docker
+---
+depends_on:
+- lint
+kind: pipeline
 name: test_3-7
-
-platform:
-  os: linux
-  arch: amd64
-
 steps:
-- name: build test
+- image: plugins/docker
+  name: build test
   pull: if-not-exists
-  image: plugins/docker
   settings:
     dockerfile: 3.7/Dockerfile
-    dry_run: true
+    dry_run: "true"
     password:
       from_secret: dockerhub_password_ro
     repo: mwalbeck/python-poetry
     username:
       from_secret: dockerhub_username
-
 trigger:
   event:
   - pull_request
-
+type: docker
+---
 depends_on:
 - lint
-
----
 kind: pipeline
-type: docker
 name: test_3-8
-
-platform:
-  os: linux
-  arch: amd64
-
 steps:
-- name: build test
+- image: plugins/docker
+  name: build test
   pull: if-not-exists
-  image: plugins/docker
   settings:
     dockerfile: 3.8/Dockerfile
-    dry_run: true
+    dry_run: "true"
     password:
       from_secret: dockerhub_password_ro
     repo: mwalbeck/python-poetry
     username:
       from_secret: dockerhub_username
-
 trigger:
   event:
   - pull_request
-
+type: docker
+---
 depends_on:
 - lint
-
----
 kind: pipeline
-type: docker
 name: test_3-9
-
-platform:
-  os: linux
-  arch: amd64
-
 steps:
-- name: build test
+- image: plugins/docker
+  name: build test
   pull: if-not-exists
-  image: plugins/docker
   settings:
     dockerfile: 3.9/Dockerfile
-    dry_run: true
+    dry_run: "true"
     password:
       from_secret: dockerhub_password_ro
     repo: mwalbeck/python-poetry
     username:
       from_secret: dockerhub_username
-
 trigger:
   event:
   - pull_request
-
+type: docker
+---
 depends_on:
 - lint
-
----
 kind: pipeline
-type: docker
-name: release_3-7
-
-platform:
-  os: linux
-  arch: amd64
-
+name: test_3-10
 steps:
-- name: determine tags
+- image: plugins/docker
+  name: build test
   pull: if-not-exists
-  image: mwalbeck/determine-docker-tags
-  environment:
-    APP_ENV: 3.7
+  settings:
+    dockerfile: 3.10/Dockerfile
+    dry_run: "true"
+    password:
+      from_secret: dockerhub_password_ro
+    repo: mwalbeck/python-poetry
+    username:
+      from_secret: dockerhub_username
+trigger:
+  event:
+  - pull_request
+type: docker
+---
+depends_on:
+- lint
+kind: pipeline
+name: release_3-7
+steps:
+- environment:
+    APP_ENV: "3.7"
     APP_NAME: POETRY
+    CUSTOM_TAGS: ""
     DOCKERFILE_PATH: 3.7/Dockerfile
     VERSION_TYPE: docker_env
-
-- name: build and publish
+  image: mwalbeck/determine-docker-tags
+  name: determine tags
   pull: if-not-exists
-  image: plugins/docker
+- image: plugins/docker
+  name: build and publish
+  pull: if-not-exists
   settings:
     dockerfile: 3.7/Dockerfile
     password:
@@ -139,10 +125,9 @@ steps:
     repo: mwalbeck/python-poetry
     username:
       from_secret: dockerhub_username
-
-- name: notify
+- image: plugins/matrix
+  name: notify
   pull: if-not-exists
-  image: plugins/matrix
   settings:
     homeserver: https://matrix.mwalbeck.org
     password:
@@ -155,38 +140,30 @@ steps:
     status:
     - failure
     - success
-
 trigger:
   branch:
   - master
   event:
   - push
-
+type: docker
+---
 depends_on:
 - lint
-
----
 kind: pipeline
-type: docker
 name: release_3-8
-
-platform:
-  os: linux
-  arch: amd64
-
 steps:
-- name: determine tags
-  pull: if-not-exists
-  image: mwalbeck/determine-docker-tags
-  environment:
-    APP_ENV: 3.8
+- environment:
+    APP_ENV: "3.8"
     APP_NAME: POETRY
+    CUSTOM_TAGS: ""
     DOCKERFILE_PATH: 3.8/Dockerfile
     VERSION_TYPE: docker_env
-
-- name: build and publish
+  image: mwalbeck/determine-docker-tags
+  name: determine tags
   pull: if-not-exists
-  image: plugins/docker
+- image: plugins/docker
+  name: build and publish
+  pull: if-not-exists
   settings:
     dockerfile: 3.8/Dockerfile
     password:
@@ -194,10 +171,9 @@ steps:
     repo: mwalbeck/python-poetry
     username:
       from_secret: dockerhub_username
-
-- name: notify
+- image: plugins/matrix
+  name: notify
   pull: if-not-exists
-  image: plugins/matrix
   settings:
     homeserver: https://matrix.mwalbeck.org
     password:
@@ -210,39 +186,30 @@ steps:
     status:
     - failure
     - success
-
 trigger:
   branch:
   - master
   event:
   - push
-
+type: docker
+---
 depends_on:
 - lint
-
----
 kind: pipeline
-type: docker
 name: release_3-9
-
-platform:
-  os: linux
-  arch: amd64
-
 steps:
-- name: determine tags
-  pull: if-not-exists
-  image: mwalbeck/determine-docker-tags
-  environment:
-    APP_ENV: 3.9
+- environment:
+    APP_ENV: "3.9"
     APP_NAME: POETRY
-    CUSTOM_TAGS: latest
+    CUSTOM_TAGS: ""
     DOCKERFILE_PATH: 3.9/Dockerfile
     VERSION_TYPE: docker_env
-
-- name: build and publish
+  image: mwalbeck/determine-docker-tags
+  name: determine tags
   pull: if-not-exists
-  image: plugins/docker
+- image: plugins/docker
+  name: build and publish
+  pull: if-not-exists
   settings:
     dockerfile: 3.9/Dockerfile
     password:
@@ -250,10 +217,9 @@ steps:
     repo: mwalbeck/python-poetry
     username:
       from_secret: dockerhub_username
-
-- name: notify
+- image: plugins/matrix
+  name: notify
   pull: if-not-exists
-  image: plugins/matrix
   settings:
     homeserver: https://matrix.mwalbeck.org
     password:
@@ -266,18 +232,60 @@ steps:
     status:
     - failure
     - success
-
 trigger:
   branch:
   - master
   event:
   - push
-
+type: docker
+---
 depends_on:
 - lint
-
+kind: pipeline
+name: release_3-10
+steps:
+- environment:
+    APP_ENV: "3.10"
+    APP_NAME: POETRY
+    CUSTOM_TAGS: latest
+    DOCKERFILE_PATH: 3.10/Dockerfile
+    VERSION_TYPE: docker_env
+  image: mwalbeck/determine-docker-tags
+  name: determine tags
+  pull: if-not-exists
+- image: plugins/docker
+  name: build and publish
+  pull: if-not-exists
+  settings:
+    dockerfile: 3.10/Dockerfile
+    password:
+      from_secret: dockerhub_password
+    repo: mwalbeck/python-poetry
+    username:
+      from_secret: dockerhub_username
+- image: plugins/matrix
+  name: notify
+  pull: if-not-exists
+  settings:
+    homeserver: https://matrix.mwalbeck.org
+    password:
+      from_secret: matrix_password
+    roomid:
+      from_secret: matrix_roomid
+    username:
+      from_secret: matrix_username
+  when:
+    status:
+    - failure
+    - success
+trigger:
+  branch:
+  - master
+  event:
+  - push
+type: docker
 ---
 kind: signature
-hmac: 2c1b184a28ab4239f8594fc8d6c06ed731c6ca890604f74b3b1d7e821e185ae7
+hmac: 0e55da523c093a8f801fd1fcb6a4a2d3b500b0eb47e7fadca4fb2315c4c303d1
 
 ...
