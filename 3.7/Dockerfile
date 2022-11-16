@@ -1,4 +1,4 @@
-FROM python:3.7.15-slim-bullseye@sha256:9aae6feee12a1cd75e3ed059cdc590e4b5f8f158bac80b3858d7ac21d4f559fd
+FROM python:3.7.15-slim-bullseye@sha256:7816ff9e4f2c31671cc7db97ea99e05a2e5fd508eaeced99e0939dbadf4f670a
 
 # renovate: datasource=pypi depName=poetry versioning=semver
 ENV POETRY_VERSION 1.2.2
