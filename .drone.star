@@ -1,12 +1,10 @@
 def main(ctx):
     return [
         lint(),
-        test("3-7", "3.7"),
         test("3-8", "3.8"),
         test("3-9", "3.9"),
         test("3-10", "3.10"),
         test("3-11", "3.11"),
-        release("3-7", "3.7"),
         release("3-8", "3.8"),
         release("3-9", "3.9"),
         release("3-10", "3.10"),
