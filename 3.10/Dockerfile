@@ -1,4 +1,4 @@
-FROM python:3.10.14-slim-bookworm@sha256:a962d0c0b69e3f75e501af04d8b48ca26b00601da953524530fab58a9b496b57
+FROM python:3.10.14-slim-bookworm@sha256:29835ac0dde5cb774a07105cd427eec33282eeb100085f10f744597d035ff1c0
 
 # renovate: datasource=pypi depName=poetry versioning=semver
 ENV POETRY_VERSION 1.8.3
