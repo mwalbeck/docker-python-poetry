@@ -26,35 +26,6 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: test_3-8
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: build test
-  pull: if-not-exists
-  image: plugins/docker
-  settings:
-    dockerfile: 3.8/Dockerfile
-    dry_run: true
-    password:
-      from_secret: dockerhub_password_ro
-    repo: mwalbeck/python-poetry
-    username:
-      from_secret: dockerhub_username
-
-trigger:
-  event:
-  - pull_request
-
-depends_on:
-- lint
-
----
-kind: pipeline
-type: docker
 name: test_3-9
 
 platform:
@@ -171,38 +142,28 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: release_3-8
+name: test_3-13
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: determine tags
-  pull: if-not-exists
-  image: mwalbeck/determine-docker-tags
-  environment:
-    APP_ENV: 3.8
-    APP_NAME: POETRY
-    DOCKERFILE_PATH: 3.8/Dockerfile
-    VERSION_TYPE: docker_env
-
-- name: build and publish
+- name: build test
   pull: if-not-exists
   image: plugins/docker
   settings:
-    dockerfile: 3.8/Dockerfile
+    dockerfile: 3.13/Dockerfile
+    dry_run: true
     password:
-      from_secret: dockerhub_password
+      from_secret: dockerhub_password_ro
     repo: mwalbeck/python-poetry
     username:
       from_secret: dockerhub_username
 
 trigger:
-  branch:
-  - master
   event:
-  - push
+  - pull_request
 
 depends_on:
 - lint
@@ -340,7 +301,6 @@ steps:
   environment:
     APP_ENV: 3.12
     APP_NAME: POETRY
-    CUSTOM_TAGS: latest
     DOCKERFILE_PATH: 3.12/Dockerfile
     VERSION_TYPE: docker_env
 
@@ -365,7 +325,47 @@ depends_on:
 - lint
 
 ---
+kind: pipeline
+type: docker
+name: release_3-13
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: determine tags
+  pull: if-not-exists
+  image: mwalbeck/determine-docker-tags
+  environment:
+    APP_ENV: 3.13
+    APP_NAME: POETRY
+    CUSTOM_TAGS: latest
+    DOCKERFILE_PATH: 3.13/Dockerfile
+    VERSION_TYPE: docker_env
+
+- name: build and publish
+  pull: if-not-exists
+  image: plugins/docker
+  settings:
+    dockerfile: 3.13/Dockerfile
+    password:
+      from_secret: dockerhub_password
+    repo: mwalbeck/python-poetry
+    username:
+      from_secret: dockerhub_username
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
+
+depends_on:
+- lint
+
+---
 kind: signature
-hmac: 556e6e5f68f4bb20bf2ff98647f2b30f22d73f0ebc1777aea8ba2ff2c2e2c75f
+hmac: 29f7310f8d7d18bed0930ab5d9cfcb4528ee04cf497583a7c1559ddb0aaa2d1d
 
 ...

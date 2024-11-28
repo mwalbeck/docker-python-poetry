@@ -1,16 +1,16 @@
 def main(ctx):
     return [
         lint(),
-        test("3-8", "3.8"),
         test("3-9", "3.9"),
         test("3-10", "3.10"),
         test("3-11", "3.11"),
         test("3-12", "3.12"),
-        release("3-8", "3.8"),
+        test("3-13", "3.13"),
         release("3-9", "3.9"),
         release("3-10", "3.10"),
         release("3-11", "3.11"),
-        release("3-12", "3.12", custom_tags = "latest"),
+        release("3-12", "3.12"),
+        release("3-13", "3.13", custom_tags = "latest"),
     ]
 
 def lint():
