@@ -9,7 +9,7 @@ jobs:
   lint:
     runs-on: docker
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: https://github.com/hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Dockerfile
@@ -18,7 +18,7 @@ jobs:
   python3_9:
     runs-on: dind
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Get docker tags
         id: tags
         shell: sh
@@ -48,7 +48,7 @@ jobs:
   python3_10:
     runs-on: dind
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Get docker tags
         id: tags
         shell: sh
@@ -78,7 +78,7 @@ jobs:
   python3_11:
     runs-on: dind
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Get docker tags
         id: tags
         shell: sh
@@ -108,7 +108,7 @@ jobs:
   python3_12:
     runs-on: dind
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Get docker tags
         id: tags
         shell: sh
@@ -138,7 +138,7 @@ jobs:
   python3_13:
     runs-on: dind
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Get docker tags
         id: tags
         shell: sh
