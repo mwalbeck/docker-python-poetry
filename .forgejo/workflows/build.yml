@@ -10,7 +10,7 @@ jobs:
     runs-on: docker
     steps:
       - uses: actions/checkout@v5
-      - uses: https://github.com/hadolint/hadolint-action@v3.1.0
+      - uses: https://github.com/hadolint/hadolint-action@v3.2.0
         with:
           dockerfile: Dockerfile
           recursive: true
