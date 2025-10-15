@@ -15,36 +15,6 @@ jobs:
           dockerfile: Dockerfile
           recursive: true
 
-  python3_9:
-    runs-on: dind
-    steps:
-      - uses: actions/checkout@v5
-      - name: Get docker tags
-        id: tags
-        shell: sh
-        env:
-          VERSION_TYPE: "docker_env"
-          APP_NAME: "POETRY"
-          APP_ENV: "3.9"
-          DOCKERFILE_PATH: "3.9/Dockerfile"
-          IMAGE_NAME: "mwalbeck/python-poetry"
-        run: |
-          determine-docker-tags
-          dockerd &
-      - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@v3
-      - name: Build and push
-        uses: https://github.com/docker/build-push-action@v6
-        with:
-          push: true
-          tags: ${{ steps.tags.outputs.tags }}
-          file: "3.9/Dockerfile"
-
   python3_10:
     runs-on: dind
     steps:
@@ -164,3 +134,33 @@ jobs:
           push: true
           tags: ${{ steps.tags.outputs.tags }}
           file: "3.13/Dockerfile"
+
+  python3_14:
+    runs-on: dind
+    steps:
+      - uses: actions/checkout@v5
+      - name: Get docker tags
+        id: tags
+        shell: sh
+        env:
+          VERSION_TYPE: "docker_env"
+          APP_NAME: "POETRY"
+          APP_ENV: "3.14"
+          DOCKERFILE_PATH: "3.14/Dockerfile"
+          IMAGE_NAME: "mwalbeck/python-poetry"
+        run: |
+          determine-docker-tags
+          dockerd &
+      - name: Login to Docker Hub
+        uses: https://github.com/docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: https://github.com/docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: https://github.com/docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ steps.tags.outputs.tags }}
+          file: "3.14/Dockerfile"
