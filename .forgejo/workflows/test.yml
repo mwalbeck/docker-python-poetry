@@ -25,15 +25,10 @@ jobs:
           APP_NAME: "POETRY"
           APP_ENV: "3.10"
           DOCKERFILE_PATH: "3.10/Dockerfile"
-          IMAGE_NAME: "mwalbeck/python-poetry"
+          IMAGE_NAME: "git.walbeck.it/mwalbeck/python-poetry"
         run: |
           determine-docker-tags
           dockerd &
-      - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_RO }}
       - name: Set up Docker Buildx
         uses: https://github.com/docker/setup-buildx-action@v3
       - name: Test build
@@ -54,15 +49,10 @@ jobs:
           APP_NAME: "POETRY"
           APP_ENV: "3.11"
           DOCKERFILE_PATH: "3.11/Dockerfile"
-          IMAGE_NAME: "mwalbeck/python-poetry"
+          IMAGE_NAME: "git.walbeck.it/mwalbeck/python-poetry"
         run: |
           determine-docker-tags
           dockerd &
-      - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_RO }}
       - name: Set up Docker Buildx
         uses: https://github.com/docker/setup-buildx-action@v3
       - name: Test build
@@ -83,15 +73,10 @@ jobs:
           APP_NAME: "POETRY"
           APP_ENV: "3.12"
           DOCKERFILE_PATH: "3.12/Dockerfile"
-          IMAGE_NAME: "mwalbeck/python-poetry"
+          IMAGE_NAME: "git.walbeck.it/mwalbeck/python-poetry"
         run: |
           determine-docker-tags
           dockerd &
-      - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_RO }}
       - name: Set up Docker Buildx
         uses: https://github.com/docker/setup-buildx-action@v3
       - name: Test build
@@ -112,15 +97,10 @@ jobs:
           APP_NAME: "POETRY"
           APP_ENV: "3.13"
           DOCKERFILE_PATH: "3.13/Dockerfile"
-          IMAGE_NAME: "mwalbeck/python-poetry"
+          IMAGE_NAME: "git.walbeck.it/mwalbeck/python-poetry"
         run: |
           determine-docker-tags
           dockerd &
-      - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_RO }}
       - name: Set up Docker Buildx
         uses: https://github.com/docker/setup-buildx-action@v3
       - name: Test build
@@ -141,15 +121,10 @@ jobs:
           APP_NAME: "POETRY"
           APP_ENV: "3.14"
           DOCKERFILE_PATH: "3.14/Dockerfile"
-          IMAGE_NAME: "mwalbeck/python-poetry"
+          IMAGE_NAME: "git.walbeck.it/mwalbeck/python-poetry"
         run: |
           determine-docker-tags
           dockerd &
-      - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_RO }}
       - name: Set up Docker Buildx
         uses: https://github.com/docker/setup-buildx-action@v3
       - name: Test build
