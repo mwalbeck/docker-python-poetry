@@ -1,4 +1,4 @@
-FROM python:3.10.19-slim@sha256:ed9e9e63d6b7c71c8f80eae61ab889d3912ca097a8206dca52874457be507cf1
+FROM python:3.10.20-slim@sha256:b0d2aaa5e6e783cdb9b2e3842bdcf12664769566595bbd623b586cec01dd9b1e
 
 # renovate: datasource=pypi depName=poetry versioning=semver
 ENV POETRY_VERSION=2.3.2
