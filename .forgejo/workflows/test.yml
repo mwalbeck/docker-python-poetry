@@ -30,7 +30,7 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@v3
+        uses: https://github.com/docker/setup-buildx-action@v4
       - name: Test build
         uses: https://github.com/docker/build-push-action@v6
         with:
@@ -54,7 +54,7 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@v3
+        uses: https://github.com/docker/setup-buildx-action@v4
       - name: Test build
         uses: https://github.com/docker/build-push-action@v6
         with:
@@ -78,7 +78,7 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@v3
+        uses: https://github.com/docker/setup-buildx-action@v4
       - name: Test build
         uses: https://github.com/docker/build-push-action@v6
         with:
@@ -102,7 +102,7 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@v3
+        uses: https://github.com/docker/setup-buildx-action@v4
       - name: Test build
         uses: https://github.com/docker/build-push-action@v6
         with:
@@ -126,7 +126,7 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@v3
+        uses: https://github.com/docker/setup-buildx-action@v4
       - name: Test build
         uses: https://github.com/docker/build-push-action@v6
         with:
