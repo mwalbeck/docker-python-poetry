@@ -46,13 +46,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -100,13 +100,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -154,13 +154,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -208,13 +208,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -262,13 +262,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
