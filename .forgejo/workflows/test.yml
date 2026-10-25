@@ -7,8 +7,8 @@ jobs:
     if: github.ref != 'refs/heads/renovate/*'
     runs-on: docker
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: https://github.com/hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/hadolint@06be81baf89a55ffd0e24b8f04a4185738dd3387 # v3.5.0
         with:
           dockerfile: Dockerfile
           recursive: true
@@ -16,7 +16,7 @@ jobs:
   python3_11:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Get docker tags
         id: tags
         shell: sh
@@ -30,9 +30,9 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Test build
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           tags: ${{ steps.tags.outputs.tags }}
           file: "3.11/Dockerfile"
@@ -40,7 +40,7 @@ jobs:
   python3_12:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Get docker tags
         id: tags
         shell: sh
@@ -54,9 +54,9 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Test build
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           tags: ${{ steps.tags.outputs.tags }}
           file: "3.12/Dockerfile"
@@ -64,7 +64,7 @@ jobs:
   python3_13:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Get docker tags
         id: tags
         shell: sh
@@ -78,9 +78,9 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Test build
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           tags: ${{ steps.tags.outputs.tags }}
           file: "3.13/Dockerfile"
@@ -88,7 +88,7 @@ jobs:
   python3_14:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Get docker tags
         id: tags
         shell: sh
@@ -102,9 +102,9 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Test build
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           tags: ${{ steps.tags.outputs.tags }}
           file: "3.14/Dockerfile"
@@ -112,7 +112,7 @@ jobs:
   python3_15:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Get docker tags
         id: tags
         shell: sh
@@ -126,9 +126,9 @@ jobs:
           determine-docker-tags
           dockerd &
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Test build
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           tags: ${{ steps.tags.outputs.tags }}
           file: "3.15/Dockerfile"

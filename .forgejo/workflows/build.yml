@@ -9,8 +9,8 @@ jobs:
   lint:
     runs-on: docker
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: https://github.com/hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/hadolint@06be81baf89a55ffd0e24b8f04a4185738dd3387 # v3.5.0
         with:
           dockerfile: Dockerfile
           recursive: true
@@ -18,7 +18,7 @@ jobs:
   python3_11:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get docker tags - Docker Hub
         id: dockerhub_tags
@@ -46,13 +46,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -72,7 +72,7 @@ jobs:
   python3_12:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get docker tags - Docker Hub
         id: dockerhub_tags
@@ -100,13 +100,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -126,7 +126,7 @@ jobs:
   python3_13:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get docker tags - Docker Hub
         id: dockerhub_tags
@@ -154,13 +154,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -180,7 +180,7 @@ jobs:
   python3_14:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get docker tags - Docker Hub
         id: dockerhub_tags
@@ -208,13 +208,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
@@ -234,7 +234,7 @@ jobs:
   python3_15:
     runs-on: dind
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get docker tags - Docker Hub
         id: dockerhub_tags
@@ -262,13 +262,13 @@ jobs:
           dockerd &
 
       - name: Login to Docker Hub
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Forgejo registry
-        uses: https://github.com/docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        uses: actions/docker-login@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: git.walbeck.it
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
