@@ -59,9 +59,9 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Build and push
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           push: true
           file: "3.11/Dockerfile"
@@ -113,9 +113,9 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Build and push
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           push: true
           file: "3.12/Dockerfile"
@@ -167,9 +167,9 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Build and push
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           push: true
           file: "3.13/Dockerfile"
@@ -221,9 +221,9 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Build and push
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           push: true
           file: "3.14/Dockerfile"
@@ -275,9 +275,9 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: https://github.com/docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+        uses: actions/docker-setup-buildx@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - name: Build and push
-        uses: https://github.com/docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        uses: actions/docker-build-push@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           push: true
           file: "3.15/Dockerfile"
